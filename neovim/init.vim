@@ -4,14 +4,21 @@ filetype plugin indent on
 set encoding=utf-8
 set nocompatible
 
+" Indent settings
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
 " Relative line numbering
 set relativenumber
 
 set guifont=Fura\ Code\ NF
 
+" Text wrap options
 set wrap linebreak nolist
 set textwidth=80
 
+" Cursor line highlighting
 set cursorline
 
 " Leader key setting
@@ -20,6 +27,15 @@ let mapleader=" "
 
 " Clear search
 map <Leader>cs :let @/ = ""<CR>
+
+" FZF buffer switch
+map <Leader>b :Buffers<CR>
+
+" FZF files search
+map <Leader>f :Files<CR>
+
+" Buffer close
+map <Leader>d :bd<CR>
 
 " Better search
 set ignorecase
@@ -46,6 +62,9 @@ Plug 'edkolev/tmuxline.vim'
 " Netrw extension
 Plug 'tpope/vim-vinegar'
 
+" Autocomments plugin
+Plug 'tpope/vim-commentary'
+
 " Autocompletion framework
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
@@ -55,7 +74,7 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'do': 'bash install.sh',
     \ }
 
-" Better selection UI
+" FZF
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 Plug 'junegunn/fzf.vim'
