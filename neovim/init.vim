@@ -82,6 +82,9 @@ Plug 'junegunn/fzf.vim'
 " F# Language server
 Plug 'ionide/Ionide-vim', { 'for': 'fsharp', 'do': 'make fsautocomplete' }
 
+" Rust support
+Plug 'rust-lang/rust.vim', { 'for': ['rust', 'toml'] }
+
 " Function singatures plugin
 Plug 'Shougo/echodoc.vim'
 
@@ -114,7 +117,9 @@ set updatetime=2000
 " Language server config
 set hidden
 
-let g:LanguageClient_serverCommands = {}
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['rustup', 'run', 'stable', 'rls'],
+    \ }
 
 
 function SetLSPShortcuts()
@@ -133,7 +138,7 @@ endfunction()
 " Only enables LSP mappings for following files
 augroup LSP
   autocmd!
-  autocmd FileType cpp,c,fsharp call SetLSPShortcuts()
+  autocmd FileType cpp,c,fsharp,rust call SetLSPShortcuts()
 augroup END
 
 " F# hover tooltip
