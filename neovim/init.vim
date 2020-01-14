@@ -4,6 +4,10 @@ filetype plugin indent on
 set encoding=utf-8
 set nocompatible
 
+" Disabling backups
+set nobackup
+set nowritebackup
+
 " Indent settings
 set tabstop=4
 set shiftwidth=4
@@ -65,24 +69,30 @@ Plug 'tpope/vim-vinegar'
 " Autocomments plugin
 Plug 'tpope/vim-commentary'
 
-" Autocompletion framework
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-
-" Language Server Protocol
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-
 " FZF
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 Plug 'junegunn/fzf.vim'
 
-" F# Language server
+" Coc language server
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+
+
+" Obsolete lsanguage server
+" Completion framework
+Plug 'Shougo/deoplete.nvim', { 'for': 'fsharp', 'do': ':UpdateRemotePlugins' }
+
+" LSP
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'for': 'fsharp',
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
+" F# plugin for LSP
 Plug 'ionide/Ionide-vim', { 'for': 'fsharp', 'do': 'make fsautocomplete' }
 
-" Function singatures plugin
+" Better documentation popup
 Plug 'Shougo/echodoc.vim'
 
 call plug#end()
@@ -98,52 +108,20 @@ let g:netrw_liststyle = 3
 " Make netrw take only 25% of screen space
 let g:netrw_winsize = 25
 
-" Enabling Autocompletion
-let g:deoplete#enable_at_startup = 1
-
-" Echodoc config
-set cmdheight=2
-let g:echodoc#enable_at_startup = 1
-let g:echodoc#type = 'signature'
-
 " Always show signcolumn
 set signcolumn=yes
-
-set updatetime=2000
 
 " Language server config
 set hidden
 
-let g:LanguageClient_serverCommands = {}
+set cmdheight=2
 
+set updatetime=500
 
-function SetLSPShortcuts()
-  nnoremap <leader>ld :call LanguageClient#textDocument_definition()<CR>
-  nnoremap <leader>lr :call LanguageClient#textDocument_rename()<CR>
-  nnoremap <leader>lf :call LanguageClient#textDocument_formatting()<CR>
-  nnoremap <leader>lt :call LanguageClient#textDocument_typeDefinition()<CR>
-  nnoremap <leader>lx :call LanguageClient#textDocument_references()<CR>
-  nnoremap <leader>la :call LanguageClient_workspace_applyEdit()<CR>
-  nnoremap <leader>lc :call LanguageClient#textDocument_completion()<CR>
-  nnoremap <leader>lh :call LanguageClient#textDocument_hover()<CR>
-  nnoremap <leader>ls :call LanguageClient_textDocument_documentSymbol()<CR>
-  nnoremap <leader>lm :call LanguageClient_contextMenu()<CR>
-endfunction()
+set shortmess+=c
 
-" Only enables LSP mappings for following files
-augroup LSP
-  autocmd!
-  autocmd FileType cpp,c,fsharp call SetLSPShortcuts()
-augroup END
-
-" F# hover tooltip
-if has('nvim') && exists('*nvim_open_win')
-  augroup FSharpShowTooltip
+augroup FSharp
     autocmd!
+    autocmd FileType fsharp source fsharp.vim
     autocmd CursorHold *.fs,*.fsi,*.fsx call fsharp#showTooltip()
-  augroup END
-endif
-
-" F# LSP things
-let g:fsharp#workspace_peek_deep_level = 4
-let g:fsharp#automatic_workspace_init = 1
+augroup END
