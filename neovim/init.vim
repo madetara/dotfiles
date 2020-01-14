@@ -80,7 +80,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " F# Language server
-Plug 'ionide/Ionide-vim', { 'do': 'make fsautocomplete' }
+Plug 'ionide/Ionide-vim', { 'for': 'fsharp', 'do': 'make fsautocomplete' }
 
 " Function singatures plugin
 Plug 'Shougo/echodoc.vim'
