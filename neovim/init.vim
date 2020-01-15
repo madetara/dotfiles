@@ -30,7 +30,7 @@ nnoremap <Space> <nop>
 let mapleader=" "
 
 " Clear search
-map <Leader>cs :let @/ = ""<CR>
+map <silent> <Leader>cs :let @/ = ""<CR>
 
 " FZF buffer switch
 map <Leader>b :Buffers<CR>
@@ -77,8 +77,7 @@ Plug 'junegunn/fzf.vim'
 " Coc language server
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
-
-" Obsolete lsanguage server
+" Obsolete language server
 " Completion framework
 Plug 'Shougo/deoplete.nvim', { 'for': 'fsharp', 'do': ':UpdateRemotePlugins' }
 
@@ -92,7 +91,6 @@ Plug 'autozimu/LanguageClient-neovim', {
 " F# plugin for LSP
 Plug 'ionide/Ionide-vim', { 'for': 'fsharp', 'do': 'make fsautocomplete' }
 
-" Better documentation popup
 Plug 'Shougo/echodoc.vim'
 
 call plug#end()
@@ -120,8 +118,13 @@ set updatetime=500
 
 set shortmess+=c
 
+" Loads coc key-bindings for chosen filetypes
+augroup coc
+    autocmd!
+    autocmd FileType rust,python,haskell source ~/.config/nvim/coc.vim
+augroup END
+
 augroup FSharp
     autocmd!
-    autocmd FileType fsharp source fsharp.vim
-    autocmd CursorHold *.fs,*.fsi,*.fsx call fsharp#showTooltip()
+    autocmd FileType fsharp source ~/.config/nvim/fsharp.vim
 augroup END
