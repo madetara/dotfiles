@@ -128,3 +128,8 @@ augroup FSharp
     autocmd!
     autocmd FileType fsharp source ~/.config/nvim/fsharp.vim
 augroup END
+
+augroup make
+    autocmd!
+    autocmd FileType make set expandtab&
+augroup END

@@ -23,6 +23,8 @@ let g:fsharp#automatic_workspace_init = 1
 
 let b:coc_suggest_disable = 1
 
+set updatetime=2000
+
 " Initializing completion plugin
 call deoplete#enable()
 call deoplete#initialize()
