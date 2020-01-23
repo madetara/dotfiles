@@ -131,5 +131,12 @@ augroup END
 
 augroup make
     autocmd!
+    " makefile only works with tabs
     autocmd FileType make set expandtab&
+augroup END
+
+augroup yml
+    autocmd!
+    autocmd FileType yaml set tabstop=2
+    autocmd FileType yaml set shiftwidth=2
 augroup END

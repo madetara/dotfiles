@@ -1,6 +1,11 @@
 " Disabling coc language server
 CocDisable
 
+" F# indentation
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
 "Language client hotkeys
 nnoremap <silent> <Leader>ld :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <Leader>lr :call LanguageClient#textDocument_rename()<CR>
