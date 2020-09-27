@@ -8,6 +8,7 @@ nvim-config:
 	ln -sf $(CURDIR)/neovim/plugins.vim ~/.config/nvim/plugins.vim
 	ln -sf $(CURDIR)/neovim/init.vim ~/.config/nvim/init.vim
 	ln -sf $(CURDIR)/neovim/fsharp.vim ~/.config/nvim/fsharp.vim
+	ln -sf $(CURDIR)/neovim/golang.vim ~/.config/nvim/golang.vim
 	ln -sf $(CURDIR)/neovim/coc.vim ~/.config/nvim/coc.vim
 	ln -sf $(CURDIR)/neovim/coc/coc-settings.json ~/.config/nvim/coc-settings.json
 
