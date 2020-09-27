@@ -16,7 +16,7 @@ set expandtab
 " Relative line numbering
 set relativenumber
 
-set guifont=Fura\ Code\ NF
+set guifont=JetBrains\ Mono
 
 " Text wrap options
 set wrap linebreak nolist
@@ -51,49 +51,8 @@ set scrolloff=3
 set background=dark
 set termguicolors
 
-" Vim-plug plugins
-call plug#begin()
-
-" Vim status line plugins
-Plug 'vim-airline/vim-airline'
-
-" Iceberg color scheme
-Plug 'cocopon/iceberg.vim'
-
-" tmux status bar generator
-Plug 'edkolev/tmuxline.vim'
-
-" Netrw extension
-Plug 'tpope/vim-vinegar'
-
-" Autocomments plugin
-Plug 'tpope/vim-commentary'
-
-" FZF
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-
-Plug 'junegunn/fzf.vim'
-
-" Coc language server
-Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-
-" Obsolete language server
-" Completion framework
-Plug 'Shougo/deoplete.nvim', { 'for': 'fsharp', 'do': ':UpdateRemotePlugins' }
-
-" LSP
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'for': 'fsharp',
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-
-" F# plugin for LSP
-Plug 'ionide/Ionide-vim', { 'for': 'fsharp', 'do': 'make fsautocomplete' }
-
-Plug 'Shougo/echodoc.vim'
-
-call plug#end()
+" Load plugins
+source ~/.config/nvim/plugins.vim
 
 " Color scheme config
 colo iceberg
@@ -121,7 +80,7 @@ set shortmess+=c
 " Loads coc key-bindings for chosen filetypes
 augroup coc
     autocmd!
-    autocmd FileType rust,python,haskell source ~/.config/nvim/coc.vim
+    autocmd FileType rust,python,haskell,go source ~/.config/nvim/coc.vim
 augroup END
 
 augroup FSharp
